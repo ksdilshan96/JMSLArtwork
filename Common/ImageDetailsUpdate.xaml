@@ -1,0 +1,472 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ImageCategorizingWithWidthRatio" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_DatabaseConnection" Type="InArgument(ui:DatabaseConnection)" />
+    <x:Property Name="in_AssetReference" Type="InArgument(x:String)" />
+    <x:Property Name="io_XValue" Type="InOutArgument(x:Double)" />
+    <x:Property Name="io_YValue" Type="InOutArgument(x:Double)" />
+    <x:Property Name="io_Width" Type="InOutArgument(x:Double)" />
+    <x:Property Name="io_Height" Type="InOutArgument(x:Double)" />
+    <x:Property Name="io_CurrentSizePerc" Type="InOutArgument(x:Double)" />
+    <x:Property Name="io_Angle" Type="InOutArgument(x:String)" />
+    <x:Property Name="in_TemplateName" Type="InArgument(x:String)" />
+    <x:Property Name="in_QA_ProdSwitch" Type="InArgument(x:String)" />
+    <x:Property Name="io_is_FirstRun" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="in_Position" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_DBInsertionPoint" Type="InArgument(x:Boolean)" />
+  </x:Members>
+  <this:ImageCategorizingWithWidthRatio.in_AssetReference>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ImageCategorizingWithWidthRatio.in_AssetReference>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1315,2532</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ImageCategorizingWithWidthRatio_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="60">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="54">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Image details Update in DB" sap:VirtualizedContainerService.HintSize="1325,2287" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="Dt_RecordsExists" />
+      <Variable x:TypeArguments="x:String" Name="IncSizePerc" />
+      <Variable x:TypeArguments="x:String" Name="XIncreamentValue" />
+      <Variable x:TypeArguments="x:String" Name="YIncreamentValue" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="1283,160" sap2010:WorkflowViewState.IdRef="MultipleAssign_7">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_31">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[in_TemplateName]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[Regex.Match(in_TemplateName,"(?&lt;=\/)(.*)").ToString.Replace(".png","")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_36">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:Boolean">[io_is_FirstRun]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_37">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:Int32">[in_Position]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:Int32">[if(in_TemplateName.Contains("FB"),0,in_Position)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Query - Check records exists in the DB" sap:VirtualizedContainerService.HintSize="1283,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Common\SelectRecordsFromDB.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DatabaseConnection]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_RetryCount">2</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ResultDatatable">[Dt_RecordsExists]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SelectQuery" xml:space="preserve">["SELECT * FROM "+in_QA_ProdSwitch+".[bot].ImageSizeDetials WHERE AssetReference = '"+in_AssetReference+"' AND Position='"+in_Position.ToString+"' AND  Template = '"+in_TemplateName+"'"]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConnectionString" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_ProviderName" />
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_initialDelay">3000</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbPath">Main | ProcessTransaction | Create Artwork | Image Update | ImageDetailsUpdate</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbParentName">Image Update</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_WbStartTime">[Now]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_ActivityTimeOut">30000</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1283,51" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,180" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[Dt_RecordsExists]" DisplayName="Check records exists in the DB" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;SELECT * FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].ImageSizeDetials WHERE AssetReference = '&quot;+in_AssetReference+&quot;' AND Position='&quot;+in_Position.ToString+&quot;' AND  Template = '&quot;+in_TemplateName+&quot;'&quot;]">
+            <ui:ExecuteQuery.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:ExecuteQuery.Parameters>
+          </ui:ExecuteQuery>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <If Condition="[Dt_RecordsExists.Rows.Count&gt;0]" DisplayName="If: Record already created in Datatable" sap:VirtualizedContainerService.HintSize="1283,1777" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <If Condition="[in_DBInsertionPoint]" sap:VirtualizedContainerService.HintSize="712,1629" sap2010:WorkflowViewState.IdRef="If_7">
+          <If.Else>
+            <Sequence sap:VirtualizedContainerService.HintSize="567,1481" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="IncAngle" />
+                <Variable x:TypeArguments="x:Double" Name="Prev_Perc" />
+                <Variable x:TypeArguments="x:Boolean" Name="is_ModificationRequested" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="525,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="526,299" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[Not (io_is_FirstRun And in_Position.Equals(Dt_RecordsExists.Rows(0).Item(&quot;Position&quot;).ToString))]" sap:VirtualizedContainerService.HintSize="484,207" sap2010:WorkflowViewState.IdRef="If_4" />
+                  </Sequence>
+                </ui:CommentOut.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CommentOut>
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="525,51" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="380,221" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="338,129" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+                      <ui:MultipleAssign.AssignOperations>
+                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_28">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:Double">[io_XValue]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:Double">[If(CDbl(Dt_RecordsExists.Rows(0).Item("XValue").ToString.Replace(" ","")).Equals(0) Or Not(Cint(Dt_RecordsExists.Rows(0).Item("Position").ToString.Replace(" ","")).Equals(in_Position)) ,io_XValue,CDbl(Dt_RecordsExists.Rows(0).Item("XValue").ToString.Replace(" ","")))]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_29">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:Double">[io_YValue]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:Double">[If(CDbl(Dt_RecordsExists.Rows(0).Item("YValue").ToString.Replace(" ","")).Equals(0),io_YValue,CDbl(CDbl(Dt_RecordsExists.Rows(0).Item("YValue").ToString.Replace(" ",""))))]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                        </scg:List>
+                      </ui:MultipleAssign.AssignOperations>
+                    </ui:MultipleAssign>
+                  </Sequence>
+                </ui:CommentOut.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CommentOut>
+              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="525,129" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
+                <ui:MultipleAssign.AssignOperations>
+                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_33">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:Double">[io_XValue]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:Double">[If(CDbl(Dt_RecordsExists.Rows(0).Item("XValue").ToString.Replace(" ","")).Equals(0) AND (Cint(Dt_RecordsExists.Rows(0).Item("Position").ToString.Replace(" ","")).Equals(in_Position)) ,io_XValue,CDbl(Dt_RecordsExists.Rows(0).Item("XValue").ToString.Replace(" ","")))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_34">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:Double">[io_YValue]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:Double" xml:space="preserve">[If(CDbl(Dt_RecordsExists.Rows(0).Item("YValue").ToString.Replace(" ","")).Equals(0)  AND (Cint(Dt_RecordsExists.Rows(0).Item("Position").ToString.Replace(" ","")).Equals(in_Position)) ,io_YValue,CDbl(CDbl(Dt_RecordsExists.Rows(0).Item("YValue").ToString.Replace(" ",""))))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                  </scg:List>
+                </ui:MultipleAssign.AssignOperations>
+              </ui:MultipleAssign>
+              <ui:MultipleAssign DisplayName="Multiple Assign: Get DB values" sap:VirtualizedContainerService.HintSize="525,377" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+                <ui:MultipleAssign.AssignOperations>
+                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_19">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[XIncreamentValue]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[if(String.IsNullOrEmpty(Dt_RecordsExists.Rows(0).Item("XIncValue").ToString.Replace(" ","")),"0",Dt_RecordsExists.Rows(0).Item("XIncValue").ToString.Replace(" ",""))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_20">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:Double">[io_Width]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:Double">[CDbl(if(String.IsNullOrEmpty(Dt_RecordsExists.Rows(0).Item("Width").ToString.Replace(" ","")),"0",Dt_RecordsExists.Rows(0).Item("Width").ToString.Replace(" ","")))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_21">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:Double">[io_Height]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:Double">[CDbl(if(String.IsNullOrEmpty(Dt_RecordsExists.Rows(0).Item("Height").ToString.Replace(" ","")),"0",Dt_RecordsExists.Rows(0).Item("Height").ToString.Replace(" ","")))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_22">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:Double">[io_CurrentSizePerc]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:Double">[CDbl(Dt_RecordsExists.Rows(0).item("CurrentSizePrecentage").ToString.Replace(" ",""))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_23">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[IncSizePerc]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[if(String.IsNullOrEmpty(Dt_RecordsExists.Rows(0).Item("SizeIncrementPercentage").ToString.Replace(" ","")),"0",Dt_RecordsExists.Rows(0).Item("SizeIncrementPercentage").ToString.Replace(" ",""))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_24">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[io_Angle]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[if(String.IsNullOrEmpty(Dt_RecordsExists.Rows(0).Item("Angle").ToString.Replace(" ","")),io_Angle,Dt_RecordsExists.Rows(0).Item("Angle").ToString.Replace(" ",""))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_25">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[YIncreamentValue]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[if(String.IsNullOrEmpty(Dt_RecordsExists.Rows(0).Item("YIncValue").ToString.Replace(" ","")),"0",Dt_RecordsExists.Rows(0).Item("YIncValue").ToString.Replace(" ",""))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_26">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[IncAngle]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[if(String.IsNullOrEmpty(Dt_RecordsExists.Rows(0).Item("IncAngle").ToString.Replace(" ","")),"0",Dt_RecordsExists.Rows(0).Item("IncAngle").ToString.Replace(" ",""))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_32">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:Double">[Prev_Perc]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:Double">[io_CurrentSizePerc]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_35">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:Boolean">[is_ModificationRequested]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:Boolean">[if(String.IsNullOrEmpty(Dt_RecordsExists.Rows(0).Item("ModifyArtwork").ToString.Replace(" ","")),false,CBool(Dt_RecordsExists.Rows(0).Item("ModifyArtwork")))]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                  </scg:List>
+                </ui:MultipleAssign.AssignOperations>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:MultipleAssign>
+              <If Condition="[is_ModificationRequested]" sap:VirtualizedContainerService.HintSize="525,621" sap2010:WorkflowViewState.IdRef="If_6">
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="380,473" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:MultipleAssign DisplayName="Multiple Assign:  ReArrage Values" sap:VirtualizedContainerService.HintSize="338,253" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                      <ui:MultipleAssign.AssignOperations>
+                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:Double">[io_XValue]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:Double">[If(CDbl(XIncreamentValue).Equals(0),CDbl(io_XValue),(CDbl(io_XValue)+CDbl(XIncreamentValue)))]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:Double">[io_YValue]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:Double">[If(CDbl(YIncreamentValue).Equals(0),CDbl(io_YValue),(CDbl(io_YValue)+CDbl(YIncreamentValue)))]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:Double">[io_CurrentSizePerc]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:Double">[CDbl(If(CDbl(IncSizePerc).Equals(0),io_CurrentSizePerc,(CDbl(io_CurrentSizePerc)+(CDbl(IncSizePerc)/100))))]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:Double">[io_Width]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:Double">[if(io_CurrentSizePerc.Equals(0),Cdbl(io_Width),(Cdbl(io_Width)/Prev_Perc)*Cdbl(io_CurrentSizePerc))]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_15">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:Double">[io_Height]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:Double">[if(io_CurrentSizePerc.Equals(0),Cdbl(io_Height),(Cdbl(io_Height)/Prev_Perc)*Cdbl(io_CurrentSizePerc))]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[io_Angle]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[If(CDbl(IncAngle).Equals(0),CDbl(io_Angle),(CDbl(io_Angle)+CDbl(IncAngle))).ToString]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                        </scg:List>
+                      </ui:MultipleAssign.AssignOperations>
+                    </ui:MultipleAssign>
+                    <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Update New Values" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="338,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_1" Sql="[&quot;update &quot;+in_QA_ProdSwitch+&quot;.[bot].ImageSizeDetials set XValue = '&quot;+io_XValue.ToString+&quot;',YValue = '&quot;+io_YValue.ToString+&quot;',XIncValue='0',YIncValue = '0',Width = '&quot;+io_Width.ToString+&quot;',Height = '&quot;+io_Height.ToString+&quot;',CurrentSizePrecentage = '&quot;+io_CurrentSizePerc.ToString+&quot;',SizeIncrementPercentage = '0',Angle='&quot;+io_Angle+&quot;',IncAngle = '0' , ModifyArtwork='0' where AssetReference = '&quot;+in_AssetReference+&quot;' and Template='&quot;+in_TemplateName+&quot;' and Position='&quot;+in_Position.ToString+&quot;'&quot;]">
+                      <ui:ExecuteNonQuery.Parameters>
+                        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                      </ui:ExecuteNonQuery.Parameters>
+                    </ui:ExecuteNonQuery>
+                  </Sequence>
+                </If.Then>
+              </If>
+            </Sequence>
+          </If.Else>
+        </If>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="526,428" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[not io_XValue.Equals(0)]" DisplayName="If: First run" sap:VirtualizedContainerService.HintSize="484,236" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <ui:ExecuteQuery ContinueOnError="{x:Null}" DataTable="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="insert first row" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" Sql="[&quot;INSERT INTO &quot;+in_QA_ProdSwitch+&quot;.[bot].[ImageSizeDetials]([AssetReference],[Template],[Position],[XValue],[YValue],[Width],[Height],[Angle],[CurrentSizePrecentage])VALUES ('&quot;+in_AssetReference+&quot;','&quot;+in_TemplateName+&quot;',&quot;+in_Position.ToString+&quot;,'&quot;+io_XValue.ToString+&quot;','&quot;+io_YValue.ToString+&quot;','&quot;+io_Width.ToString+&quot;','&quot;+io_Height.ToString+&quot;','&quot;+io_Angle+&quot;','&quot;+io_CurrentSizePerc.ToString+&quot;')&quot;]">
+                <ui:ExecuteQuery.Parameters>
+                  <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                </ui:ExecuteQuery.Parameters>
+              </ui:ExecuteQuery>
+            </If.Then>
+          </If>
+          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Boolean">[io_is_FirstRun]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

@@ -1,0 +1,1 @@
+runas /savecred /user:administrator C:\Users\Wizzob\Desktop\JMSL_Promotion_Automation 10-23\JMSL_Promotion_Automation\Disconnector.bat

@@ -1,0 +1,192 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Get_Product_Image_and_details_for_Transation" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="This contain single creation detail that comes from [bot].[View_CreativeGenerationPending] " Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
+    <x:Property sap2010:Annotation.AnnotationText="Out product images and textual detail for particular creative id&#xA;" Name="out_ProductIamgePlusDetails" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="in_DatabaseConnection" Type="InArgument(ui:DatabaseConnection)" />
+    <x:Property Name="in_QA_ProdSwitch" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1240,1113</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Get_Product_Image_and_details_for_Transation_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="44">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="68">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Get_Product_Image_and_details_for_Transation" sap:VirtualizedContainerService.HintSize="376,908" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="CreationID" />
+      <Variable x:TypeArguments="s:DateTime" Default="[Now]" Name="wbStartTime" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign DisplayName="Creation ID to Get Prodcut Images/Details " sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[CreationID]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem("CreativeID").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Writelog" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Logs\Writelog.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DatabaseConnection">[in_databaseConnection]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbLevel">0</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbPath">Main|ProcessTransaction|Get Product Image and details for Transaction</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbStatus">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbDurationSec">0</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbKey">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">[CreationID]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbState">Executing</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbName">Get Product Image and details for Transaction</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbParentName">ProcessTransaction</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbStartTime">[wbStartTime.ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Message">Starting: Get image details for transaction</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="SELECT * FROM [CRM].[bot].[View_CreativeGenerationPendingDetail] WHERE CreativeID = 'VB1202003120052';&#xA;&#xA; SELECT CHECKSUM(departmentCode) as SortOrder,* FROM +in_QA_ProdSwitch+&quot;.[bot].[View_CreativeGenerationPendingDetail] where CreativeID='&quot;+CreationID+&quot;' ORDER BY AssetTypeID,SortOrder ASC&#xA;&#xA;&quot;SELECT * FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].[View_CreativeGenerationPendingDetail] WHERE CreativeID = '&quot;+CreationID+&quot;' ORDER BY AssetTypeID,DepartmentCode ASC;&quot;" DisplayName="Query - Get Product Image details" sap:VirtualizedContainerService.HintSize="334,309" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Common\SelectRecordsFromDB.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DatabaseConnection]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_RetryCount">2</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ResultDatatable">[out_ProductIamgePlusDetails]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SelectQuery">["SELECT CHECKSUM(departmentCode) as SortOrder,* FROM "+in_QA_ProdSwitch+".[bot].[View_CreativeGenerationPendingDetail] where CreativeID='"+CreationID+"' ORDER BY AssetTypeID,SortOrder ASC"]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConnectionString" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_ProviderName" />
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_initialDelay">3000</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbPath">Main | ProcessTransaction | Get Product Image and details for Transation</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbParentName">ProcessTransaction</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_WbStartTime">[Now]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_ActivityTimeOut">30000</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,237" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="SELECT * FROM [CRM].[bot].[View_CreativeGenerationPendingDetail] WHERE CreativeID = 'VB1202003120052';" CommandType="Text" DataTable="[out_ProductIamgePlusDetails]" DisplayName="Execute Query" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;SELECT * FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].[View_CreativeGenerationPendingDetail] WHERE CreativeID = '&quot;+CreationID+&quot;';&quot;]">
+            <ui:ExecuteQuery.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:ExecuteQuery.Parameters>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ExecuteQuery>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:RemoveDuplicateRows DataTable="[out_ProductIamgePlusDetails]" DisplayName="Remove Duplicate Rows" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="RemoveDuplicateRows_1" OutputDataTable="[out_ProductIamgePlusDetails]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Writelog" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Logs\Writelog.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DatabaseConnection">[in_databaseConnection]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbLevel">0</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbPath">Main|ProcessTransaction|Get Product Image and details for Transaction</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbStatus">Success</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbDurationSec">[convert.ToDouble(now.Subtract(wbStartTime).TotalSeconds).ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbKey">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">[CreationID]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbState">Ended</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbName">Get Product Image and details for Transaction</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbParentName">ProcessTransaction</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_wbStartTime">[wbStartTime.ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Message">Ended: Get image details for transaction</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+  </Sequence>
+</Activity>

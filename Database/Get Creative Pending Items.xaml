@@ -1,0 +1,390 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Get_Creative_Pending_Items" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_DatabaseConnection" Type="InArgument(ui:DatabaseConnection)" />
+    <x:Property Name="out_CreationGenerationPendingItems" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="in_QA_ProdSwitch" Type="InArgument(x:String)" />
+    <x:Property Name="in_JMSL_APIConfig" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1641,1877</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Get_Creative_Pending_Items_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="56">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="52">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Get_Creative_Pending_Items" sap:VirtualizedContainerService.HintSize="1651,1812" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="selectPendingRecodes" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtCheckPendingRecodes" />
+      <Variable x:TypeArguments="x:String" Name="CheckRuningStatus" />
+      <Variable x:TypeArguments="x:String" Name="CreativeID" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="1609,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[selectPendingRecodes]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">["SELECT * FROM "+in_QA_ProdSwitch+".[bot].[View_CreativeGenerationPending] WHERE  CampaignStatusDescription = 'Creative Generation Pending' order by CreativeID"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="&quot;SELECT * FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].[View_CreativeGenerationPending] WHERE  CampaignStatusDescription = 'Creative Generation Pending' order by CreativeID&quot;" DisplayName="Query - Select pending Records" sap:VirtualizedContainerService.HintSize="1609,159" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Common\SelectRecordsFromDB.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DatabaseConnection]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_RetryCount">2</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ResultDatatable">[dtCheckPendingRecodes]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SelectQuery">[selectPendingRecodes]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConnectionString" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_ProviderName" />
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_initialDelay">3000</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbPath">Main | Init | DatabaseQueries</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbParentName">Init</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_WbStartTime">[Now]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_ActivityTimeOut">30000</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1609,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,180" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dtCheckPendingRecodes]" DisplayName="Execute Query" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="[selectPendingRecodes]">
+            <ui:ExecuteQuery.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:ExecuteQuery.Parameters>
+          </ui:ExecuteQuery>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <If Condition="[dtCheckPendingRecodes.Rows.Count&gt;0]" sap:VirtualizedContainerService.HintSize="1609,1330" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,619" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="JMSL_AuthenticationToken" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Generate Authentication " sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="JMSL API\Generate Authentication.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_AuthenticationToken">[JMSL_AuthenticationToken]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_AuthenticationEndpoint">[in_JMSL_APIConfig("AuthenticationEndpoint")]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_UserName">[in_JMSL_APIConfig("AuthenticationUserName")]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Pasword">[in_JMSL_APIConfig("AuthenticationPassword")]</InArgument>
+              <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DatabaseConnection">[in_DatabaseConnection]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">[CreativeID]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetPendingCreativeID workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Common\GetPendingCreativeID.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_AuthToken">[JMSL_AuthenticationToken]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_CreativeID">[CreativeID]</OutArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_JMSL_APIConfig">[in_JMSL_APIConfig]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_2" Text="// Api Call integration" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="View Names will be fixed &#xA;in here all the Creation pending items will be taken &#xA;&#xA;Viber &#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Viber' order by CreativeID&quot;&#xA;&#xA;Email &#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Email' order by CreativeID&quot;&#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND TemplateURL='https://jmsldamblob.blob.core.windows.net/templates/EDM1/EDM1.psd' order by CreativeID&quot;&#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Email' order by CreativeID&quot;&#xA;&#xA;Facebook&#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Facebook' order by CreativeID&quot;&#xA;ms&#xA;FB -1&#xA;Email-2&#xA;Viber -3&#xA;&quot; SELECT * FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending'  and CreativeStorePath='https://jmsldamblob.blob.core.windows.net/creatives/CREATIVES_20201013/' AND ChannelID='3' order by CreativeID&quot;&#xA;&#xA;" DisplayName="Execute Query - Get Creation Pending Items " sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Common\SelectRecordsFromDB.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DatabaseConnection]</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_RetryCount">2</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ResultDatatable">[out_CreationGenerationPendingItems]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_SelectQuery" xml:space="preserve">["SELECT * FROM "+in_QA_ProdSwitch+".[bot].[View_CreativeGenerationPending] WHERE  CampaignStatusDescription = 'Creative Generation In Progress' and  CreativeID ='"+CreativeID+"'"]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_ConnectionString" />
+              <InArgument x:TypeArguments="x:String" x:Key="in_ProviderName" />
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_initialDelay">3000</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_WbPath">Main | GetSetTransactionData | Get Creative Pending Items</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_WbParentName">GetSetTransactionData</InArgument>
+              <InArgument x:TypeArguments="s:DateTime" x:Key="in_WbStartTime">[Now]</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_ActivityTimeOut">30000</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,972" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="View Names will be fixed &#xA;in here all the Creation pending items will be taken &#xA;&#xA;Viber &#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Viber' order by CreativeID&quot;&#xA;&#xA;Email &#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Email' order by CreativeID&quot;&#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND TemplateURL='https://jmsldamblob.blob.core.windows.net/templates/EDM1/EDM1.psd' order by CreativeID&quot;&#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Email' order by CreativeID&quot;&#xA;&#xA;Facebook&#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Facebook' order by CreativeID&quot;&#xA;ms&#xA;FB -1&#xA;Email-2&#xA;Viber -3&#xA;&quot; SELECT * FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending'  and CreativeStorePath='https://jmsldamblob.blob.core.windows.net/creatives/CREATIVES_20201013/' AND ChannelID='3' order by CreativeID&quot;&#xA;&#xA;" CommandType="Text" DataTable="[out_CreationGenerationPendingItems]" DisplayName="Execute Query - Get Creation Pending Items " ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,880" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" Sql="[&quot;SELECT * FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].[View_CreativeGenerationPending] WHERE  CampaignStatusDescription = 'Creative Generation In Progress' and  CreativeID ='&quot;+CreativeID+&quot;'&quot;]">
+                  <ui:ExecuteQuery.Parameters>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:ExecuteQuery.Parameters>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ExecuteQuery>
+              </Sequence>
+            </ui:CommentOut.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:CommentOut>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="1188,1172" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="sd:DataTable" Name="Dt_FailedCreatives" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="&quot;SELECT top(1)* FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].[GenerationFailedCreatives] where Status='Failed' and RetryCount&lt;3 and (CreativeID!='' or CreativeID != null)&quot;" DisplayName="Query - Select Failed creative Records" sap:VirtualizedContainerService.HintSize="1146,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Common\SelectRecordsFromDB.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DatabaseConnection]</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_RetryCount">2</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ResultDatatable">[Dt_FailedCreatives]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_SelectQuery">["SELECT top(1)* FROM "+in_QA_ProdSwitch+".[bot].[GenerationFailedCreatives] where Status='Failed' and RetryCount&lt;3 and (CreativeID!='' or CreativeID != null)"]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_ConnectionString" />
+              <InArgument x:TypeArguments="x:String" x:Key="in_ProviderName" />
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_initialDelay">3000</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_WbPath">Main | GetSetTransactionData | Get Creative Pending Items</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_WbParentName">GetSetTransactionData</InArgument>
+              <InArgument x:TypeArguments="s:DateTime" x:Key="in_WbStartTime">[Now]</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_ActivityTimeOut">30000</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <If Condition="[Dt_FailedCreatives.rows.count&gt;0]" DisplayName="If: Check failed records exists in the table" sap:VirtualizedContainerService.HintSize="1146,896" sap2010:WorkflowViewState.IdRef="If_4">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="725,738" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="683,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[CreativeID]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[Dt_FailedCreatives.Rows(0).Item("CreativeID").ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query: update flag" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="683,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_1" Sql="[&quot;update &quot;+in_QA_ProdSwitch+&quot;.[bot].[GenerationFailedCreatives] set RetryStatus = 'true' where creativeID = '&quot;+CreativeID+&quot;'&quot;]">
+                  <ui:ExecuteNonQuery.Parameters>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:ExecuteNonQuery.Parameters>
+                </ui:ExecuteNonQuery>
+                <If Condition="[String.IsNullOrEmpty(CreativeID.Trim)]" sap:VirtualizedContainerService.HintSize="683,418" sap2010:WorkflowViewState.IdRef="If_3">
+                  <If.Then>
+                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="sd:DataTable">[out_CreationGenerationPendingItems]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="sd:DataTable">[new DataTable]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence sap:VirtualizedContainerService.HintSize="376,270" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                        <ui:CommentOut.Body>
+                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,312" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="  SELECT * FROM [CRM].[bot].[View_DistributionPending] WHERE CampaignStatusDescription = 'Distribution Pending';&#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_DistributionPending] WHERE CampaignStatusDescription = 'Distribution Pending' and ChannelID = '2'&quot;" CommandType="Text" DataTable="[out_DistibutionPendingItems]" DisplayName="Execute Query - Get Distribution Pending items " ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,220" sap2010:WorkflowViewState.IdRef="ExecuteQuery_5" Sql="[&quot;SELECT * FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].[View_DistributionPending] WHERE  CreativeID = '&quot;+CreativeID+&quot;'&quot;]">
+                              <ui:ExecuteQuery.Parameters>
+                                <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                              </ui:ExecuteQuery.Parameters>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:ExecuteQuery>
+                          </Sequence>
+                        </ui:CommentOut.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:CommentOut>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="View Names will be fixed &#xA;in here all the Creation pending items will be taken &#xA;&#xA;Viber &#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Viber' order by CreativeID&quot;&#xA;&#xA;Email &#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Email' order by CreativeID&quot;&#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND TemplateURL='https://jmsldamblob.blob.core.windows.net/templates/EDM1/EDM1.psd' order by CreativeID&quot;&#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Email' order by CreativeID&quot;&#xA;&#xA;Facebook&#xA;&#xA;&quot;SELECT * FROM [CRM].[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending' AND ChannelDescription='Facebook' order by CreativeID&quot;&#xA;ms&#xA;FB -1&#xA;Email-2&#xA;Viber -3&#xA;&quot; SELECT * FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].[View_CreativeGenerationPending] WHERE CampaignStatusDescription = 'Creative Generation Pending'  and CreativeStorePath='https://jmsldamblob.blob.core.windows.net/creatives/CREATIVES_20201013/' AND ChannelID='3' order by CreativeID&quot;&#xA;&#xA;" DisplayName="Execute Query - Get Creation Pending Items " sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Common\SelectRecordsFromDB.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DatabaseConnection]</InArgument>
+                          <InArgument x:TypeArguments="x:Int32" x:Key="in_RetryCount">2</InArgument>
+                          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ResultDatatable">[out_CreationGenerationPendingItems]</OutArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_SelectQuery" xml:space="preserve">["SELECT * FROM "+in_QA_ProdSwitch+".[bot].[View_CreativeGenerationPending] WHERE  CampaignStatusDescription = 'Creative Generation In Progress' and  CreativeID ='"+CreativeID+"'"]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_ConnectionString" />
+                          <InArgument x:TypeArguments="x:String" x:Key="in_ProviderName" />
+                          <InArgument x:TypeArguments="x:Int32" x:Key="in_initialDelay">3000</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_WbPath">Main | GetSetTransactionData | Get Creative Pending Items</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">
+                            <Literal x:TypeArguments="x:String" Value="" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_WbParentName">GetSetTransactionData</InArgument>
+                          <InArgument x:TypeArguments="s:DateTime" x:Key="in_WbStartTime">[Now]</InArgument>
+                          <InArgument x:TypeArguments="x:Int32" x:Key="in_ActivityTimeOut">30000</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeWorkflowFile>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;There are no any pending records&quot;]" />
+                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="sd:DataTable">[out_CreationGenerationPendingItems]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[new  DataTable]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

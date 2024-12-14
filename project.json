@@ -1,0 +1,71 @@
+{
+  "name": "PROD_JMSL_Promotion_Automation_Windows",
+  "projectId": "240b00d9-9dce-4b46-b64c-d2dce370c858",
+  "description": "PROD_JMSL_Promotion_Automation",
+  "main": "UnattenMain.xaml",
+  "dependencies": {
+    "Microsoft.Data.SqlClient": "[4.1.0]",
+    "System.Data.SqlClient": "[4.8.2]",
+    "UiPath.Azure.Activities": "[1.1.8]",
+    "UiPath.Credentials.Activities": "[2.0.0]",
+    "UiPath.Database.Activities": "[1.7.1]",
+    "UiPath.Excel.Activities": "[2.11.4]",
+    "UiPath.Mail.Activities": "[1.12.3]",
+    "UiPath.System.Activities": "[22.10.5]",
+    "UiPath.UIAutomation.Activities": "[22.10.4]",
+    "UiPath.WebAPI.Activities": "[1.9.2]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "20.4.3.0",
+  "projectVersion": "1.0.31",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "workflowSerialization": "DataContract",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": false,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": true
+  },
+  "arguments": {
+    "input": [],
+    "output": []
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "UnattenMain.xaml",
+      "uniqueId": "06c74770-53b5-40df-93cd-84ca1a5157a9",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}
