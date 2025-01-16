@@ -91,7 +91,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Writelog" sap:VirtualizedContainerService.HintSize="1213,1821" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Writelog" sap:VirtualizedContainerService.HintSize="798.4,1773.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="LogQuery" />
       <Variable x:TypeArguments="sd:DataTable" Name="Dt_PendingRecordsExists" />
@@ -103,14 +103,14 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If sap2010:Annotation.AnnotationText="!!!!!  !!! Change both Write Log and Here &#xA;" Condition="False" sap:VirtualizedContainerService.HintSize="436,386" sap2010:WorkflowViewState.IdRef="If_3">
+    <If sap2010:Annotation.AnnotationText="!!!!!  !!! Change both Write Log and Here &#xA;" Condition="False" sap:VirtualizedContainerService.HintSize="798.4,390.4" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Assign sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_5">
+        <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_5">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[QA_ProdSwitch]</OutArgument>
           </Assign.To>
@@ -120,7 +120,7 @@
         </Assign>
       </If.Then>
       <If.Else>
-        <Assign sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_6">
+        <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_6">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[QA_ProdSwitch]</OutArgument>
           </Assign.To>
@@ -130,27 +130,27 @@
         </Assign>
       </If.Else>
     </If>
-    <ui:ExecuteQuery ContinueOnError="{x:Null}" CommandType="Text" DataTable="[Dt_logEnabled]" DisplayName="Execute Query: Check log enabled or not" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="436,121" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="[&quot;select value from &quot;+QA_ProdSwitch+&quot;.[bot].[Configurations] where Name='is_LogEnable'&quot;]" TimeoutMS="60000">
+    <ui:ExecuteQuery CommandType="Text" ConnectionSecureString="{x:Null}" ConnectionString="{x:Null}" ContinueOnError="{x:Null}" DataTable="[Dt_logEnabled]" DisplayName="Execute Query: Check log enabled or not" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="798.4,121.6" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" ProviderName="{x:Null}" Sql="[&quot;select value from &quot;+QA_ProdSwitch+&quot;.[bot].[Configurations] where Name='is_LogEnable'&quot;]" TimeoutMS="60000">
       <ui:ExecuteQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>
     </ui:ExecuteQuery>
-    <If Condition="[CBool(Dt_logEnabled.Rows(0).Item(0))]" DisplayName="If: check log enabled" sap:VirtualizedContainerService.HintSize="436,1283" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[CBool(Dt_logEnabled.Rows(0).Item(0))]" DisplayName="If: check log enabled" sap:VirtualizedContainerService.HintSize="798.4,1238.4" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
-        <Sequence DisplayName="Log Enabled" sap:VirtualizedContainerService.HintSize="416,1134" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Log Enabled" sap:VirtualizedContainerService.HintSize="797,1089" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ExecuteQuery ContinueOnError="{x:Null}" CommandType="Text" DataTable="[Dt_PendingRecordsExists]" DisplayName="Execute Query: chech records exists in the db" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="382,121" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;select * from &quot;+QA_ProdSwitch+&quot;.[bot].[View_CreativeGenerationPending]  where CampaignStatusID = 4 or CampaignStatusID = 5 &quot;]" TimeoutMS="120000">
+          <ui:ExecuteQuery CommandType="Text" ConnectionSecureString="{x:Null}" ConnectionString="{x:Null}" ContinueOnError="{x:Null}" DataTable="[Dt_PendingRecordsExists]" DisplayName="Execute Query: chech records exists in the db" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="755,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" ProviderName="{x:Null}" Sql="[&quot;select * from &quot;+QA_ProdSwitch+&quot;.[bot].[View_CreativeGenerationPending]  where CampaignStatusID = 4 or CampaignStatusID = 5 &quot;]" TimeoutMS="120000">
             <ui:ExecuteQuery.Parameters>
               <scg:Dictionary x:TypeArguments="x:String, Argument" />
             </ui:ExecuteQuery.Parameters>
           </ui:ExecuteQuery>
-          <If Condition="[Dt_PendingRecordsExists.Rows.Count&gt;0]" DisplayName="If: Pending or inprogress records exists " sap:VirtualizedContainerService.HintSize="382,953" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[Dt_PendingRecordsExists.Rows.Count&gt;0]" DisplayName="If: Pending or inprogress records exists " sap:VirtualizedContainerService.HintSize="755,869" sap2010:WorkflowViewState.IdRef="If_1">
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="376,711" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence sap:VirtualizedContainerService.HintSize="376,711" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="botName" />
                   <Variable x:TypeArguments="sn:IPAddress" Name="botIP" />
@@ -193,7 +193,7 @@
                   </Assign.Value>
                 </Assign>
                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[LogQuery]" />
-                <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query: Log insert" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_3" Sql="[LogQuery]">
+                <ui:ExecuteNonQuery AffectedRecords="{x:Null}" CommandType="Text" ConnectionSecureString="{x:Null}" ConnectionString="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Execute Non Query: Log insert" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_3" ProviderName="{x:Null}" Sql="[LogQuery]" TimeoutMS="{x:Null}">
                   <ui:ExecuteNonQuery.Parameters>
                     <scg:Dictionary x:TypeArguments="x:String, Argument" />
                   </ui:ExecuteNonQuery.Parameters>
