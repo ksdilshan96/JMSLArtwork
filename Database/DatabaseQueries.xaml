@@ -1,0 +1,316 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="DatabaseQueries" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_DatabaseConnection" Type="InArgument(ui:DatabaseConnection)" />
+    <x:Property Name="out_AzureStorageConnectionDetails" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="out_BlobContainerNames" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="out_JMSL_APIConfig" Type="OutArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_QA_ProdSwitch" Type="InArgument(x:String)" />
+    <x:Property Name="out_Config" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1240,1517</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>DatabaseQueries_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="46">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="48">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="DatabaseQueries" sap:VirtualizedContainerService.HintSize="376,1352" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="Configuration" />
+      <Variable x:TypeArguments="sd:DataTable" Name="JMSL_APIConfig" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="[CRM].[bot].[AzureStorageInfo]&#xA;&#xA;all the pre requesists to connect into BLOB" DisplayName="Query - Get Azure Storage Details " sap:VirtualizedContainerService.HintSize="334,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Common\SelectRecordsFromDB.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DatabaseConnection]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_RetryCount">2</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ResultDatatable">[out_AzureStorageConnectionDetails]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SelectQuery">["SELECT * FROM "+in_QA_ProdSwitch+".[bot].[AzureStorageInfo]"]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConnectionString" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_ProviderName" />
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_initialDelay">3000</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbPath">Main | Init | DatabaseQueries</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbParentName">Init</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_WbStartTime">[Now]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_ActivityTimeOut">30000</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,237" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="[CRM].[bot].[AzureStorageInfo]&#xA;&#xA;all the pre requesists to connect into BLOB" CommandType="Text" DataTable="[out_AzureStorageConnectionDetails]" DisplayName="Query - Get Azure Storage Details " ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;SELECT * FROM &quot;+in_QA_ProdSwitch+&quot;.[bot].[AzureStorageInfo]&quot;]">
+            <ui:ExecuteQuery.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:ExecuteQuery.Parameters>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ExecuteQuery>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="[CRM].[bot].[BlobContainerNames]&#xA;&#xA;blob container Names " DisplayName="Query - Get Azure Storage Container Names " sap:VirtualizedContainerService.HintSize="334,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Common\SelectRecordsFromDB.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DatabaseConnection]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_RetryCount">2</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ResultDatatable">[out_BlobContainerNames]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SelectQuery" xml:space="preserve">["SELECT * FROM  "+in_QA_ProdSwitch+".[bot].[BlobContainerNames]"]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConnectionString" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_ProviderName" />
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_initialDelay">3000</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbPath">Main | Init | DatabaseQueries</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbParentName">Init</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_WbStartTime">[Now]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_ActivityTimeOut">30000</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,237" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="[CRM].[bot].[BlobContainerNames]&#xA;&#xA;blob container Names " CommandType="Text" DataTable="[out_BlobContainerNames]" DisplayName="Query - Get Azure Storage Container Names " ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="[&quot;SELECT * FROM  &quot;+in_QA_ProdSwitch+&quot;.[bot].[BlobContainerNames]&quot;]">
+            <ui:ExecuteQuery.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:ExecuteQuery.Parameters>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ExecuteQuery>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="SELECT *  FROM [CRM].[bot].[Configurations]&#xA;&#xA;Get all Config values " DisplayName="Execute - Get Config values " sap:VirtualizedContainerService.HintSize="334,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Common\SelectRecordsFromDB.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DatabaseConnection]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_RetryCount">2</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ResultDatatable">[Configuration]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SelectQuery" xml:space="preserve">["SELECT *  FROM  "+in_QA_ProdSwitch+".[bot].[Configurations]"]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConnectionString" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_ProviderName" />
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_initialDelay">3000</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbPath">Main | Init | DatabaseQueries</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbParentName">Init</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_WbStartTime">[Now]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_ActivityTimeOut">30000</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <Assign DisplayName="Convert Datatable to Dictionary " sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[out_Config]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[Configuration.AsEnumerable.ToDictionary(Of String, Object)(function(dr) dr("Name").toString, Function(dr) dr("Value").ToString)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,237" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="SELECT *  FROM [CRM].[bot].[Configurations]&#xA;&#xA;Get all Config values " CommandType="Text" DataTable="[Configuration]" DisplayName="Execute - Get Config values " ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" Sql="[&quot;SELECT *  FROM  &quot;+in_QA_ProdSwitch+&quot;.[bot].[Configurations]&quot;]">
+            <ui:ExecuteQuery.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:ExecuteQuery.Parameters>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ExecuteQuery>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="SELECT *  FROM [CRM].[bot].[JMSL_APIConfig]&#xA;&#xA;Get all JMSL API  Config values " DisplayName="Execute - JMSL API Configuration" sap:VirtualizedContainerService.HintSize="334,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Common\SelectRecordsFromDB.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DBConnection">[in_DatabaseConnection]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_RetryCount">2</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ResultDatatable">[JMSL_APIConfig]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SelectQuery" xml:space="preserve">["SELECT *  FROM  "+in_QA_ProdSwitch+".[bot].[JMSL_APIConfig]"]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConnectionString" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_ProviderName" />
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_initialDelay">3000</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbPath">Main | Init | DatabaseQueries</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WbParentName">Init</InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_WbStartTime">[Now]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_ActivityTimeOut">30000</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,237" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="SELECT *  FROM [CRM].[bot].[JMSL_APIConfig]&#xA;&#xA;Get all JMSL API  Config values " CommandType="Text" DataTable="[JMSL_APIConfig]" DisplayName="Execute - JMSL API Configuration" ExistingDbConnection="[in_DatabaseConnection]" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" Sql="[&quot;SELECT *  FROM  &quot;+in_QA_ProdSwitch+&quot;.[bot].[JMSL_APIConfig]&quot;]">
+            <ui:ExecuteQuery.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:ExecuteQuery.Parameters>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ExecuteQuery>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <Assign DisplayName="Convert Datatable to Dictionary " sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[out_JMSL_APIConfig]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[JMSL_APIConfig.AsEnumerable.ToDictionary(Of String, String)(function(dr) dr("Name").toString, Function(dr) dr("Value").ToString)]</InArgument>
+      </Assign.Value>
+    </Assign>
+  </Sequence>
+</Activity>

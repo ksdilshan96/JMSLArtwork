@@ -1,0 +1,390 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="test" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_AzureStoConDeta" Type="InArgument(sd:DataTable)" />
+  </x:Members>
+  <this:test.in_AzureStoConDeta>
+    <InArgument x:TypeArguments="sd:DataTable" />
+  </this:test.in_AzureStoConDeta>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>604,3023</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>test_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="70">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Drawing.Imaging</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Azure.Models</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Vision.Extensions</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="124">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Azure</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="1089,2814" sap2010:WorkflowViewState.IdRef="Sequence_21">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="Veg-Fruit" Name="in_DepartmentCode" />
+      <Variable x:TypeArguments="x:String" Default="P1" Name="in_PValue" />
+      <Variable x:TypeArguments="x:Boolean" Name="is_FolderNotOpen" />
+      <Variable x:TypeArguments="x:Int32" Name="in_TimeoutShort" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="572,2739" sap2010:WorkflowViewState.IdRef="Sequence_23">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="token" />
+        <Variable x:TypeArguments="x:String" Default="https://jmsl-cmsbackend-qa.azurewebsites.net/1.0/APIAuthentication/Authenticate" Name="in_AuthenticationEndpoint" />
+        <Variable x:TypeArguments="x:String" Name="Result" />
+        <Variable x:TypeArguments="x:String" Default="CRMBot" Name="in_UserName" />
+        <Variable x:TypeArguments="x:String" Default="Ef!5Bj@9Ij!9" Name="in_Pasword" />
+        <Variable x:TypeArguments="x:String" Name="APIRequestBody" />
+        <Variable x:TypeArguments="x:Int32" Name="out_StatusCode" />
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="Headers" />
+        <Variable x:TypeArguments="njl:JObject" Name="ResultJObject" />
+        <Variable x:TypeArguments="njl:JObject" Name="ResultJSON" />
+        <Variable x:TypeArguments="sd:DataTable" Name="outDt" />
+        <Variable x:TypeArguments="ui:DatabaseConnection" Name="DbConn" />
+        <Variable x:TypeArguments="ui:Image" Name="image" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LoadImage DisplayName="Load Image" FileName="C:\Users\jkit_user\Downloads\New folder\FB1202501190046_4191.jpg" sap:VirtualizedContainerService.HintSize="510,117" sap2010:WorkflowViewState.IdRef="LoadImage_1" Image="[image]" />
+      <ui:SaveImage DisplayName="Save Image" FileName="C:\Users\jkit_user\Downloads\New folder\FB1202501190046_4191.jpg" sap:VirtualizedContainerService.HintSize="510,165" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[image]" />
+      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="510,117" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[&quot;pass&quot;]" />
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Generate Authentication.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="510,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="JMSL API\Generate Authentication.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_AuthenticationToken">[token]</OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_AuthenticationEndpoint">https://jmsl-cmsbackend-qa.azurewebsites.net/1.0/APIAuthentication/Authenticate</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_UserName">CRMBot</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Pasword">Ef!5Bj@9Ij!9</InArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_DatabaseConnection" />
+          <InArgument x:TypeArguments="x:String" x:Key="in_CreativeID" />
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{    &quot;&quot;Username&quot;&quot;:&quot;&quot;&quot;+in_UserName+&quot;&quot;&quot;,    &quot;&quot;Password&quot;&quot; : &quot;&quot;&quot;+in_Pasword+&quot;&quot;&quot;}&quot;]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="[in_AuthenticationEndpoint]" sap:VirtualizedContainerService.HintSize="510,57" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" Result="[Result]" TimeoutMS="6000">
+        <ui:HttpClient.Attachments>
+          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+        </ui:HttpClient.Attachments>
+        <ui:HttpClient.Cookies>
+          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+        </ui:HttpClient.Cookies>
+        <ui:HttpClient.Headers>
+          <InArgument x:TypeArguments="x:String" x:Key="Content-Type">application/json</InArgument>
+        </ui:HttpClient.Headers>
+        <ui:HttpClient.Parameters>
+          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+        </ui:HttpClient.Parameters>
+        <ui:HttpClient.UrlSegments>
+          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+        </ui:HttpClient.UrlSegments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:HttpClient>
+      <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="510,122" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[ResultJObject]" JsonString="[Result]" />
+      <Assign DisplayName="Take Authentication Token" sap:VirtualizedContainerService.HintSize="510,114" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Token]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["Bearer "+ResultJObject("result")("jwtToken").ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_25">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Build Request Body " sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[APIRequestBody]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">["{  ""SuccessCreatives"" : [  {    ""CreativeID"" : """+in_CreativeID+""",    ""CreativeURL"" : """+in_CreativeURL+"""  }]}"]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+      <Assign DisplayName="Build Request Body " sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_5">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[APIRequestBody]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">["{ ""SuccessCreatives"" : [  {    ""CreativeID"" : ""FB1202408180025"",    ""CreativeURL"" : ""https://jmsldamblob.blob.core.windows.net/creatives/CREATIVES_AUG_23_24_FB/FB1202408180025.jpg""  }]}"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" Body="[APIRequestBody]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="https://zandraback.keellssuper.net/1.0/CreativeGenerations/AddSuccessCreativeGenerations" sap:VirtualizedContainerService.HintSize="510,191" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="POST" ResponseHeaders="[Headers]" Result="[Result]" StatusCode="[out_StatusCode]" TimeoutMS="6000">
+        <ui:HttpClient.Attachments>
+          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+        </ui:HttpClient.Attachments>
+        <ui:HttpClient.Cookies>
+          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+        </ui:HttpClient.Cookies>
+        <ui:HttpClient.Headers>
+          <InArgument x:TypeArguments="x:String" x:Key="Content-Type">application/json</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="Authorization">[token]</InArgument>
+        </ui:HttpClient.Headers>
+        <ui:HttpClient.Parameters>
+          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+        </ui:HttpClient.Parameters>
+        <ui:HttpClient.UrlSegments>
+          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+        </ui:HttpClient.UrlSegments>
+      </ui:HttpClient>
+      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="510,85" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[out_StatusCode]" />
+      <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="510,90" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[ResultJSON]" JsonString="[Result]" />
+      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="510,85" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[ResultJObject]" />
+      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="510,85" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[Headers]" />
+      <ui:ReadRange AddHeaders="True" DataTable="[outDt]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="510,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" Range="A1:B1000" SheetName="Sheet2" WorkbookPath="C:\Users\jkit_user\Desktop\ImageCheck\test.xlsx" />
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Database Connections.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="510,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Database\Database Connections.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <OutArgument x:TypeArguments="ui:DatabaseConnection" x:Key="out_DatabaseConnection">[DbConn]</OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_QA_ProdSwitch" />
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[outDt]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="510,939" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+        <ui:ForEachRow.Body>
+          <ActivityAction x:TypeArguments="sd:DataRow">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="476,822" sap2010:WorkflowViewState.IdRef="Sequence_27">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="assetRefference" />
+                <Variable x:TypeArguments="sd:DataTable" Name="assetOutDt" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[assetRefference]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[CurrentRow(0).ToString.trim]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[assetOutDt]" DisplayName="Run query" ExistingDbConnection="[DbConn]" sap:VirtualizedContainerService.HintSize="434,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;Select *  From [CRM].[dam].[Asset] Where AssetReference= '&quot;+assetRefference+&quot;'&quot;]">
+                <ui:ExecuteQuery.Parameters>
+                  <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                </ui:ExecuteQuery.Parameters>
+              </ui:ExecuteQuery>
+              <If Condition="[assetOutDt.RowCount&gt;0]" sap:VirtualizedContainerService.HintSize="434,483" sap2010:WorkflowViewState.IdRef="If_1">
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,221" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:AppendLine File="{x:Null}" DisplayName="Append Line" FileName="C:\Users\jkit_user\Desktop\ImageCheck\MissingImages.txt" sap:VirtualizedContainerService.HintSize="334,133" sap2010:WorkflowViewState.IdRef="AppendLine_1" Text="[assetRefference]" UseDefaultEncoding="False" />
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEachRow.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ForEachRow>
+    </Sequence>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="572,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="538,602" sap2010:WorkflowViewState.IdRef="Sequence_24">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="Sameera Etited - JPG Save" sap:VirtualizedContainerService.HintSize="496,514" sap2010:WorkflowViewState.IdRef="Sequence_22">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="latestJpgFilePath" />
+              <Variable x:TypeArguments="x:String" Name="out_LocalImageFullFilePath" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[latestJpgFilePath]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[New DirectoryInfo("C:\Users\jkit_user\Downloads").GetFiles().OrderByDescending(Function(f) f.LastWriteTime).First().ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_LocalImageFullFilePath]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">C:\Users\jkit_user\Desktop\Nadeera\PROD_JMSL_Promotion_Automation_Windows\CreatedArtworks\abc.jpg</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[out_LocalImageFullFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="434,159" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[latestJpgFilePath]" />
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+  </Sequence>
+</Activity>
