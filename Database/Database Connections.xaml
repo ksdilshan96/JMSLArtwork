@@ -39,6 +39,8 @@
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>UiPath.Database</x:String>
       <x:String>UiPath.Database.Activities</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -77,9 +79,22 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Database Connections " sap:VirtualizedContainerService.HintSize="510,1146" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Database Connections " sap:VirtualizedContainerService.HintSize="1089,881" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="DatabaseServer" />
     </Sequence.Variables>
@@ -88,7 +103,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If sap2010:Annotation.AnnotationText="True = QA DB &#xA;False = PROD DB" Condition="False" sap:VirtualizedContainerService.HintSize="468,337" sap2010:WorkflowViewState.IdRef="If_1">
+    <If sap2010:Annotation.AnnotationText="True = QA DB &#xA;False = PROD DB" Condition="False" sap:VirtualizedContainerService.HintSize="436,419" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -110,7 +125,7 @@
         </Assign>
       </If.Then>
       <If.Else>
-        <Assign sap:VirtualizedContainerService.HintSize="262,70" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[DatabaseServer]</OutArgument>
           </Assign.To>
@@ -120,15 +135,15 @@
         </Assign>
       </If.Else>
     </If>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="468,404" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,325" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,320" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:DatabaseConnect sap2010:Annotation.AnnotationText="Read Only User&#xA;&#xA;User : crm_bot_user&#xA;Database: CRM &#xA;Server : &#xA;use this Connection String to retrieve following views &#xA;&#xA;[bot].[View_CreativeGenerationPending] &#xA;[bot].[View_CreativeGenerationPendingDetail]&#xA;[bot].[View_DistributionPending]&#xA;" DisplayName="Connect -  CRM Database " sap:VirtualizedContainerService.HintSize="334,237" sap2010:WorkflowViewState.IdRef="DatabaseConnect_2" ProviderName="System.Data.SqlClient" ConnectionString="[&quot;Data Source=&quot;+DatabaseServer+&quot;;Initial Catalog=&quot;+in_QA_ProdSwitch+&quot;;Persist Security Info=True;User ID=crm_bot_user;Password=@zppWX4P5U#&quot;]" DatabaseConnection="[out_DatabaseConnection]">
+          <ui:DatabaseConnect sap2010:Annotation.AnnotationText="Read Only User&#xA;&#xA;User : crm_bot_user&#xA;Database: CRM &#xA;Server : &#xA;use this Connection String to retrieve following views &#xA;&#xA;[bot].[View_CreativeGenerationPending] &#xA;[bot].[View_CreativeGenerationPendingDetail]&#xA;[bot].[View_DistributionPending]&#xA;" DisplayName="Connect -  CRM Database " sap:VirtualizedContainerService.HintSize="416,260" sap2010:WorkflowViewState.IdRef="DatabaseConnect_2" ProviderName="System.Data.SqlClient" ConnectionString="[&quot;Data Source=&quot;+DatabaseServer+&quot;;Initial Catalog=&quot;+in_QA_ProdSwitch+&quot;;Persist Security Info=True;User ID=crm_bot_user;Password=@zppWX4P5U#&quot;]" DatabaseConnection="[out_DatabaseConnection]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -137,13 +152,20 @@
           </ui:DatabaseConnect>
         </Sequence>
       </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <ui:DatabaseConnect sap2010:Annotation.AnnotationText="Read Only User&#xA;&#xA;User : crm_bot_user&#xA;Database: CRM &#xA;Server : &#xA;use this Connection String to retrieve following views &#xA;&#xA;[bot].[View_CreativeGenerationPending] &#xA;[bot].[View_CreativeGenerationPendingDetail]&#xA;[bot].[View_DistributionPending]&#xA;" DisplayName="Connect -  CRM Database " sap:VirtualizedContainerService.HintSize="468,237" sap2010:WorkflowViewState.IdRef="DatabaseConnect_3" ProviderName="Microsoft.Data.SqlClient" ConnectionString="Data Source=jmslprdmi.37d65ee5f142.database.windows.net;Persist Security Info=True;User ID=crm_bot_user;Password=@zppWX4P5U#;Encrypt=False" DatabaseConnection="[out_DatabaseConnection]">
+    <ui:DatabaseConnect sap2010:Annotation.AnnotationText="Read Only User&#xA;&#xA;User : crm_bot_user&#xA;Database: CRM &#xA;Server : &#xA;use this Connection String to retrieve following views &#xA;&#xA;[bot].[View_CreativeGenerationPending] &#xA;[bot].[View_CreativeGenerationPendingDetail]&#xA;[bot].[View_DistributionPending]&#xA;" DisplayName="Connect -  CRM Database " sap:VirtualizedContainerService.HintSize="436,269" sap2010:WorkflowViewState.IdRef="DatabaseConnect_3" ProviderName="Microsoft.Data.SqlClient" ConnectionString="Data Source=jmslprdmi.37d65ee5f142.database.windows.net;Persist Security Info=True;User ID=crm_bot_user;Password=@zppWX4P5U#;Encrypt=False" DatabaseConnection="[out_DatabaseConnection]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:DatabaseConnect>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="436,113" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[out_DatabaseConnection.ToString]" />
   </Sequence>
 </Activity>
